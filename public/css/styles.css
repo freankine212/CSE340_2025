@@ -4,3 +4,193 @@
 *:after {
   box-sizing: border-box;
 }
+
+
+
+#checkerboard {
+  width: auto; /* Adjust width as needed */
+  height: auto; /* Adjust height as needed */
+  background-size: 50% 50%;
+  background-image: 
+      linear-gradient(45deg, #030303 25%, transparent 25%),
+      linear-gradient(-45deg, #ffffff 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, #050505 75%),
+      linear-gradient(-45deg, transparent 75%, #ffffff 75%);
+  background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+  background-color: #301f1f;
+}
+nav ul{
+  max-width: 1600px;
+  margin:0 auto;
+  text-align: center;
+  text-decoration: none;
+  background-color: #ebedf1;
+  color: #0c0a0a;
+  padding: 35px;
+  display:flex;
+  justify-content: space-around;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+/* Header styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 0;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5em;
+}
+
+/* Navigation styles */
+nav {
+  text-align: center;
+  margin-top: 10px;
+}
+
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 20px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fffbfb;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #007bff;
+}
+
+/* Main content styles */
+main {
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#hero{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("/images/vehicles/delorean-tn.jpg");
+  background-size: cover;
+  background-position: center;
+  max-height: auto;
+  max-width: auto;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+#hero-box{
+  grid-column: 1/4;
+  grid-row: 1/3;
+  z-index: -1;
+}
+
+.hero-msg{
+  justify-content: left;
+  margin-top: 100px;
+  text-align: center;
+  color:aqua;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  width: calc(40% - 20px);
+  max-width: 300px; 
+}
+
+.hero-img{
+  width: auto;
+}
+
+/*#home-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}*/
+
+.upgrades-card-grid{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  /*grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;*/
+}
+
+.upgrade-1{
+  margin: 50px 0;
+  width: 100%;
+  font-family: 'Changa One', 'Helvetica', sans-serif;
+  font-size: 1em;
+  grid-area: 1/1/2/2;
+}
+
+.upgrade-2{
+  margin: 50px 0;
+  width: 100%;
+  font-family: 'Changa One', 'Helvetica', sans-serif;
+  font-size: 1em;
+  /*grid-row:1/2;
+  grid-column:2/2;*/
+
+}
+
+.upgrade-3{
+  margin:50px 0;
+  width: 100%;
+  font-family: 'Changa One', 'Helvetica', sans-serif;
+  font-size: 1em;
+  grid-row:2/2;
+  grid-column: 1/2;
+}
+
+.upgrade-4{
+  margin:50px 0;
+  width: 100%;
+  font-family: 'Changa One', 'Helvetica', sans-serif;
+  font-size:1em;
+  grid-row: 2/2;
+  grid-column: 2/2;
+}
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .container {
+      width: 90%;
+  }
+
+  header h1 {
+      font-size: 2em;
+  }
+}
