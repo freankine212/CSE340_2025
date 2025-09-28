@@ -8,15 +8,25 @@
 
 
 #checkerboard {
-  width: auto; /* Adjust width as needed */
-  height: auto; /* Adjust height as needed */
-  background-size: 50% 50%;
-  background-image: 
-      linear-gradient(45deg, #030303 25%, transparent 25%),
-      linear-gradient(-45deg, #ffffff 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #050505 75%),
-      linear-gradient(-45deg, transparent 75%, #ffffff 75%);
-  background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #000 25%, transparent 25%),
+    linear-gradient(-45deg, #000 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #000 75%),
+    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 40px 40px; /* size of each square */
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+  color: #333;
+}
+
+#wrapper {
+  width: 90%;
+  max-width: 1100px;
+  margin: 20px auto; /* spacing around wrapper */
+  background: #fff;
+  border: 5px solid black;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
 nav{
@@ -45,14 +55,18 @@ body {
 
 /* Header styles */
 header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: #333;
   color: #fff;
-  padding: 10px 0;
+  padding: 1em;
   text-align: center;
 }
 
 header h1 {
   font-size: 2.5em;
+  margin: 0;
 }
 
 /* Navigation styles */
@@ -63,6 +77,8 @@ nav {
 
 nav ul {
   list-style-type: none;
+  display: flex;
+  gap: 1em;
 }
 
 nav ul li {
@@ -177,12 +193,9 @@ main {
 /* Footer styles */
 footer {
   text-align: center;
-  padding: 10px 0;
-  background-color: #333;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+  padding: 1em;
+  background: #f0f0f0;
+  font-size: 0.8em;
 }
 
 @media (max-width: 768px) {
