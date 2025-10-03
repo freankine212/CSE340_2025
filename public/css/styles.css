@@ -33,14 +33,16 @@ nav{
   display: flex;
   justify-content: space-around;
   background-color: #301f1f;
+  padding: 10px;
 }
 nav ul{
-  max-width: 1600px;
-  margin:0 auto;
-  text-align: center;
-  text-decoration: none;
-  background-color: #ebedf1;
-  color: #0c0a0a;
+  list-style: none;
+  /*max-width: 1600px;*/
+  margin:0;/* auto;*/
+  /*text-align: center;*/
+  /*text-decoration: none;*/
+  /*background-color: #ebedf1;*/
+  /*color: #0c0a0a;*/
   padding: 35px;
   display:flex;
   justify-content: space-around;
@@ -70,31 +72,33 @@ header h1 {
 }
 
 /* Navigation styles */
-nav {
+/*nav {
   text-align: center;
   margin-top: 10px;
-}
+}*/
 
-nav ul {
+/*nav ul {
   list-style-type: none;
   display: flex;
   gap: 1em;
-}
+}*/
 
 nav ul li {
-  display: inline;
-  margin-right: 20px;
+  margin: 0;
 }
 
 nav ul li a {
-  text-decoration: none;
+    text-decoration: none;
   color: #fffbfb;
   font-weight: bold;
-  transition: color 0.3s;
+  padding: 8px 12px;
+  transition: background 0.3s;
+
 }
 
 nav ul li a:hover {
-  color: #007bff;
+  background: #444;
+  border-radius: 5px;
 }
 
 /* Main content styles */
@@ -106,29 +110,20 @@ main {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#hero{
+#hero {
   display: flex;
+  flex-direction: column; /* stack on mobile */
   align-items: center;
-  justify-content: space-between;
-  background-image: url("/images/vehicles/delorean-tn.jpg");
-  background-size: cover;
-  background-position: center;
-  max-height: auto;
-  max-width: auto;
-  padding: 40px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
   margin-bottom: 40px;
 }
 
 #hero-box{
-  grid-column: 1/4;
-  grid-row: 1/3;
-  z-index: -1;
+flex: 1;
 }
 
 .hero-msg{
-  justify-content: left;
+  /*justify-content: left;
   margin-top: 100px;
   text-align: center;
   color:aqua;
@@ -137,11 +132,20 @@ main {
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   width: calc(40% - 20px);
-  max-width: 300px; 
+  max-width: 300px;*/
+  color: #333;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  width: auto;
+  max-width: 300px;
 }
 
 .hero-img{
-  width: auto;
+  height: auto;
+  max-width: 100%;
 }
 
 /*#home-grid{
@@ -149,11 +153,20 @@ main {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }*/
 
-.upgrades-card-grid{
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  /*grid-template-rows:1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;*/
+.upgrades-card-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cols on mobile */
+  gap: 15px;
+  margin: 20px 0;
+  text-align: center;
 }
+
+.upgrades-card-grid img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
 
 .upgrade-1{
   margin: 50px 0;
@@ -190,6 +203,16 @@ main {
   grid-row: 2/2;
   grid-column: 2/2;
 }
+
+.reviews ul {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.reviews li {
+  margin-bottom: 10px;
+}
+
 /* Footer styles */
 footer {
   text-align: center;
@@ -205,5 +228,21 @@ footer {
 
   header h1 {
       font-size: 2em;
+  }
+}
+
+@media (min-width: 768px) {
+  #hero {
+    flex-direction: row; /* side by side on larger screens */
+    justify-content: space-between;
+  }
+
+  .hero-msg {
+    width: 40%;
+    margin-top: 0;
+  }
+
+  .hero-img{
+    max-width: 500px;
   }
 }
