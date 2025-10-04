@@ -29,30 +29,26 @@
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-nav{
+nav {
   display: flex;
   justify-content: space-around;
-  background-color: #301f1f;
+  background-color: #1eb319;  /* green */
   padding: 10px;
 }
 nav ul{
   list-style: none;
-  /*max-width: 1600px;*/
-  margin:0;/* auto;*/
-  /*text-align: center;*/
-  /*text-decoration: none;*/
-  /*background-color: #ebedf1;*/
-  /*color: #0c0a0a;*/
+  margin: 0;
   padding: 35px;
-  display:flex;
+  display: flex;
   justify-content: space-around;
 }
+
 
 body {
   font-family: Arial, sans-serif;
   line-height: 1.6;
   background-color: #f0f0f0;
-  color: #333;
+  color: #010e01;
 }
 
 /* Header styles */
@@ -60,10 +56,20 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: #fff;
+  background-color: #333;   /* dark gray */
+  color: #fff;              /* white text */
   padding: 1em;
   text-align: center;
+}
+
+header a {
+  color: #ffffff;           /* white links in header */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+header a:hover {
+  color: #ffd700;           /* gold hover */
 }
 
 header h1 {
@@ -84,21 +90,21 @@ header h1 {
 }*/
 
 nav ul li {
-  margin: 0;
+  margin: 5;
 }
 
 nav ul li a {
-    text-decoration: none;
-  color: #fffbfb;
+  text-decoration: none;
+  color: #ffffff;           /* white text for contrast */
   font-weight: bold;
   padding: 8px 12px;
-  transition: background 0.3s;
-
+  transition: background 0.3s, color 0.3s;
 }
 
 nav ul li a:hover {
-  background: #444;
-  border-radius: 5px;
+  background: #145a0a;      /* darker green on hover */
+  color: #ffffff;           /* keep text white */
+  border-radius: 4px;
 }
 
 /* Main content styles */
