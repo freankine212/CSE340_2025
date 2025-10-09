@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | My App</title>
+</head>
+<body>
+  <div class="error-container">
+    <h1><%= status || 500 %></h1>
+    <p><%= message || 'Something went wrong!' %></p>
+    <p><a href="/">Go back home</a></p>
+  </div>
+</body>
+</html>
