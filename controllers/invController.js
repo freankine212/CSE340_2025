@@ -23,7 +23,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build vehicle detail view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next){
-  console.log("car buildByInvId triggered for ID:", req.params.invId)
+  //console.log("car buildByInvId triggered for ID:", req.params.invId)
   try{
     const inv_id = req.params.invId
     const data = await invModel.getVehicleById(inv_id)

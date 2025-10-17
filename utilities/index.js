@@ -1,6 +1,12 @@
 const invModel = require("../models/inventory-model")
 const Util = {}
 
+function cleanImagePath(path) {
+  // Remove any duplicate "/vehicles/" occurrences
+  return path.replace("/vehicles/vehicles/", "/vehicles/")
+}
+
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -35,7 +41,7 @@ Util.buildClassificationGrid = async function(data){
       grid += '<li>'
       grid +=  '<a href="/inv/detail/'+ vehicle.inv_id 
       + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
+      + 'details"><img src="' + cleanImagePath(vehicle.inv_thumbnail )
       +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
       +' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
@@ -67,7 +73,7 @@ Util.buildVehicleDetail = async function(vehicle){
   
   let detail = `
   <section class="vehicle-detail">
-  <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
+  <img src="${cleanImagePath(vehicle.inv_image)}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
       <div class="vehicle-info">
         <h2>${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}</h2>
         <p><strong>Price:</strong> $${price}</p>

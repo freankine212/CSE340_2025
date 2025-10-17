@@ -34,24 +34,43 @@ app.use("/inv", inventoryRoute)
 
 app.use(static)
 
+// Intentional 500 error route for testing
+app.use("/error", (req, res, next) => {
+  // Create an error object and pass it to the next() function
+  next(new Error("This is a test 500 error"))
+})
+
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Oh no... what did you do? They are coming for us now. Quick, use the link below to get back home!'})
 })
 
+
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+ * Express Error Handler
+ * Place after all other middleware
+ *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  if(err.status ==404){message = err.message} else{message = 'Oh no! There was a crash. Maybe try a different route? :)'}
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    status: err.status || 404,
-    message: err.message || 'OH NO! WHAT DID YOU DO?!',
-    nav: nav || [] // fallback if nav fails
+
+  // Default to 500 if no status provided
+  const status = err.status || 500
+  let message
+
+  if (status === 404) {
+    message = err.message || 'Page not found.'
+  } else if (status === 500) {
+    message = err.message || 'Oh no! There was a crash. Maybe try a different route? :)'
+  } else {
+    message = 'Something went wrong!'
+  }
+
+  res.status(status).render("errors/error", {
+    title: status === 404 ? 'Page Not Found' : 'Server Error',
+    status,
+    message,
+    nav
   })
 })
 
