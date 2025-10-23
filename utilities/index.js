@@ -90,6 +90,24 @@ Util.buildVehicleDetail = async function(vehicle){
  * Wrap other function in this for 
  * General Error Handling
  **************************************** */
-Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+Util.handleErrors = fn => (req, res, next) => 
+  Promise.resolve(fn(req, res, next)).catch(next)
+
+Util.handleError = async function (err,req, res, next){
+  let nav = await Util.getNav()
+  console.error(`Error at: "${req.originalUrl}":${err.message}`)
+
+  const status = err.status|| 500
+  const message = 
+    status === 404
+    ? err.message ||"Sorry, we appear to not have that anywhere around here."
+    : "Oh no, we had a crash. Please try another way? :)"
+
+  res.status(status).render("errors/error",{
+    title: status,
+    message,
+    nav,
+  })
+}
 
 module.exports = Util
