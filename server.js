@@ -17,6 +17,7 @@ const session = require("express-session")
 const pool = require('./database/')
 const accountController = require("./controllers/accountController")
 const accountRoute = require("./routes/accountRoute")
+const bodyParser = require("body-parser")
 
 
 /* *************
@@ -40,6 +41,10 @@ app.use(function(req, res,next){
   next()
 })
 
+//body parser middleware
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -60,7 +65,7 @@ app.use("/inv", inventoryRoute)
 
 
 //account Route
-app.use("/account", accountRoute)
+app.use("/account", require("./routes/accountRoute"))
 
 app.use(static)
 

@@ -1,0 +1,50 @@
+<h1><%= title %></h1>
+    <div id = "registration-container">
+        <p>All fields are required</p>
+            <!-- FLASH MESSAGE -->
+            <% if (message){ %>
+            <div class="flash-message"><%= message%></div>
+             <% } %>
+        <form action="/account/register" method="post" class="registration-form">
+            <!--First Name-->
+            <label for="first_name">First Name</label>
+            <input
+                type="text"
+                id="first_name"
+                name="first_name"
+                placeholder="John"
+                required
+                value="<%=locals.first_name ? locals.first_name : ''%>">
+            <!--Last Name Name-->
+            <label for="last_name">Last Name</label>
+            <input
+                type="text"
+                id="last_name"
+                name="last_name"
+                placeholder="Doe"
+                required
+                value="<%=locals.last_name ? locals.last_name : ''%>">
+            <!--Email-->
+            <label for="Email">Email</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="johndoe@fsdhf.com"
+                required
+                value="<%=locals.email ? locals.email : ''%>">
+            <!--Password-->
+            <label for="password">Password</label>
+            <span class="note">
+                Must be at least 12 characters, contain 1 special letter, 1 number and 1 special character.
+            </span>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="************"
+                required
+                value="<%=locals.password ? locals.password : ''%>">
+            
+            <button type="submit">Register</button>
+        </form>
