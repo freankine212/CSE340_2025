@@ -7,44 +7,44 @@
              <% } %>
         <form action="/account/register" method="post" class="registration-form">
             <!--First Name-->
-            <label for="first_name">First Name</label>
+            <label for="account_firstname">First Name</label>
             <input
                 type="text"
-                id="first_name"
-                name="first_name"
+                id="account_firstname"
+                name="account_firstname"
                 placeholder="John"
                 required
-                value="<%=locals.first_name ? locals.first_name : ''%>">
+                value="<%=locals.account_firstname ? locals.account_firstname : ''%>">
             <!--Last Name Name-->
-            <label for="last_name">Last Name</label>
+            <label for="account_lastname">Last Name</label>
             <input
                 type="text"
-                id="last_name"
-                name="last_name"
+                id="account_lastname"
+                name="account_lastname"
                 placeholder="Doe"
                 required
-                value="<%=locals.last_name ? locals.last_name : ''%>">
+                value="<%=locals.account_lastname ? locals.account_lastname : ''%>">
             <!--Email-->
-            <label for="Email">Email</label>
+            <label for="account_email">Email</label>
             <input
                 type="email"
-                id="email"
-                name="email"
+                id="account_email"
+                name="account_email"
                 placeholder="johndoe@fsdhf.com"
                 required
-                value="<%=locals.email ? locals.email : ''%>">
+                value="<%=locals.account_email ? locals.account_email : ''%>">
             <!--Password-->
-            <label for="password">Password</label>
+            <label for="account_password">Password</label>
             <span class="note">
                 Must be at least 12 characters, contain 1 special letter, 1 number and 1 special character.
             </span>
             <input
                 type="password"
-                id="password"
-                name="password"
+                id="account_password"
+                name="account_password"
                 placeholder="************"
                 required
-                value="<%=locals.password ? locals.password : ''%>">
+                value="<%=locals.account_password ? locals.account_password : ''%>">
             
             <button type="submit">Register</button>
         </form>
