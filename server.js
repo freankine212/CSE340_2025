@@ -20,6 +20,7 @@ const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 
 
+
 /* *************
  * Middleware
 ************* */
@@ -60,8 +61,9 @@ app.set("layout", "./layouts/layout") // not at views root
 
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
+
 // Inventory routes
-app.use("/inv", inventoryRoute)
+app.use("/inv", require("./routes/inventoryRoute"))
 
 
 //account Route

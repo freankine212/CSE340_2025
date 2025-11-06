@@ -1,0 +1,12 @@
+<h1>New Inventory</h1>
+
+<% if (message) { %>
+  <p class="notice"><%= message %></p>
+<% } %>
+
+<form action="/inv/add-inventory" method="post">
+  <label for="classification_name">Classification Name</label>
+  <input type="text" id="classification_name" name="classification_name" required>
+
+  <button type="submit">Add Classification</button>
+</form>
