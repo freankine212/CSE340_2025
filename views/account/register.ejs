@@ -10,7 +10,7 @@
             <label for="account_firstname">First Name</label>
             <input
                 type="text"
-                id="account_firstname"
+                id="accountFirstname"
                 name="account_firstname"
                 placeholder="John"
                 required
@@ -19,7 +19,7 @@
             <label for="account_lastname">Last Name</label>
             <input
                 type="text"
-                id="account_lastname"
+                id="accountLastname"
                 name="account_lastname"
                 placeholder="Doe"
                 required
@@ -28,7 +28,7 @@
             <label for="account_email">Email</label>
             <input
                 type="email"
-                id="account_email"
+                id="accountEmail"
                 name="account_email"
                 placeholder="johndoe@fsdhf.com"
                 required
@@ -44,6 +44,7 @@
                 name="account_password"
                 placeholder="************"
                 required
+                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
                 value="<%=locals.account_password ? locals.account_password : ''%>">
             
             <button type="submit">Register</button>
