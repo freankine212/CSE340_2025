@@ -1,11 +1,19 @@
 <h1>Add New Classification</h1>
 
-<% if (message) { %>
+<% if (locals.message) { %>
   <p class="notice"><%= message %></p>
+<% } %>
+<% if (locals.errors && errors.length > 0) { %>
+  <ul class="notice">
+    <% errors.forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
 <% } %>
 
 <form action="/inv/add-classification" method="post">
   <label for="classification_name">Classification Name</label>
+  <p>This can only be alphabetic</p>
   <input type="text" id="classification_name" name="classification_name" required>
 
   <button type="submit">Add Classification</button>

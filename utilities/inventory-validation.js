@@ -17,13 +17,15 @@ validate.classificationRules = () => {
 }
 
 validate.checkClassificationData = async (req, res, next) => {
+  const {classification_name} = req.body
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
     let nav = await utilities.getNav()
     res.render("inventory/add-classification", {
-      errors,
+      errors: errors.array(),
       title: "Add Classification",
       nav,
+      classification_name,
       message: null,
     })
     return
