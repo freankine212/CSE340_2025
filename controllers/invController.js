@@ -117,40 +117,56 @@ invCont.buildAddInventory = async (req, res, next) =>{
 /* ****************************************
  *  Process Add Inventory
  * *************************************** */
-invCont.addInventory = async (req, res, next) =>{
-  let nav = await utilities.getNav()
-  const {
-    inv_make,
-    inv_model,
-    inv_year,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_miles,
-    inv_color,
-    classification_id,
-  } = req.body
+invCont.addInventory = async (req, res, next) => {
+  try {
+    const nav = await utilities.getNav()
+    const {
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id,
+    } = req.body
 
-  const result = await invModel.addInventory(
-    inv_make,
-    inv_model,
-    inv_year,
-    inv_description,
-    inv_image,
-    inv_thumbnail,
-    inv_price,
-    inv_miles,
-    inv_color,
-    classification_id,
-  )
-  if (result) {
-    req.flash("notice", `${inv_make} ${inv_model} successfully added.`)
-    res.redirect("/inv")
-  } else{
-    req.flash("notice", "Sorry, adding the vehicle failed Please check spelling and try again.")
+    // Insert into your PG4 Admin database
+    const result = await invModel.addInventory(
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+    )
+
+    if (result) {
+      req.flash("notice", `The ${inv_year} ${inv_make} ${inv_model} was successfully added.`)
+      res.redirect("/inv/")
+    } else {
+      req.flash("notice", "Sorry, adding the vehicle failed. Please check your input and try again.")
+      const classificationList = await utilities.buildClassificationList(classification_id)
+      res.status(501).render("inventory/add-inventory", {
+        title: "Add New Vehicle",
+        nav,
+        classificationList,
+        message: req.flash("notice"),
+        errors: null,
+      })
+    }
+  } catch (error) {
+    console.error("Error adding inventory:", error)
+    const nav = await utilities.getNav()
     const classificationList = await utilities.buildClassificationList()
-    res.status(501).render("inventory/add-inventory",{
+    req.flash("notice", "There was an error processing your request. Please try again later.")
+    res.status(500).render("inventory/add-inventory", {
       title: "Add New Vehicle",
       nav,
       classificationList,
@@ -159,5 +175,4 @@ invCont.addInventory = async (req, res, next) =>{
     })
   }
 }
-
 module.exports = invCont

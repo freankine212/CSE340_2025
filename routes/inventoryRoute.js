@@ -5,6 +5,7 @@ const invController = require("../controllers/invController")
 const utilities = require("../utilities")
 //const invId = require("../controllers/invController")
 const invValidate = require("../utilities/inventory-validation")
+const validate = require("../utilities/inventory-validation")
 
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
@@ -28,5 +29,11 @@ router.get("/add-inventory", invController.buildAddInventory)
 
 //process add inventory
 router.get("/add-inventory", invController.addInventory)
+
+
+//add post route for inventory addition
+router.post(
+    "/add-inventory", validate.addInventoryRules(), validate.checkAddInventoryData, invController.addInventory
+)
 
 module.exports = router;

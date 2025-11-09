@@ -4,6 +4,14 @@
   <p class="notice"><%= message %></p>
 <% } %>
 
+<% if (errors && errors.length > 0) { %>
+  <ul class="notice">
+    <% errors.forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <form action="/inv/add-inventory" method="post">
   <label for="classification_id">Classification:</label>
   <%- classificationList %>

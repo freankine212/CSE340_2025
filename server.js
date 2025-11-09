@@ -69,6 +69,7 @@ app.use("/inv", require("./routes/inventoryRoute"))
 //account Route
 app.use("/account", require("./routes/accountRoute"))
 
+
 app.use(static)
 
 
