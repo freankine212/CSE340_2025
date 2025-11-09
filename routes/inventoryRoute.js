@@ -23,4 +23,10 @@ router.get("/add-classification", invController.buildAddClassification)
 // form submisstion handling
 router.post("/add-classification", invValidate.classificationRules(), invValidate.checkClassificationData, invController.addClassification)
 
+//add inventory view
+router.get("/add-inventory", invController.buildAddInventory)
+
+//process add inventory
+router.get("/add-inventory", invController.addInventory)
+
 module.exports = router;
