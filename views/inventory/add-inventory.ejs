@@ -1,10 +1,10 @@
 <h1>New Inventory</h1>
 
-<% if (message) { %>
+<% if (locals.message) { %>
   <p class="notice"><%= message %></p>
 <% } %>
 
-<% if (errors && errors.length > 0) { %>
+<% if (locals.errors && errors.length > 0) { %>
   <ul class="notice">
     <% errors.forEach(error => { %>
       <li><%= error.msg %></li>

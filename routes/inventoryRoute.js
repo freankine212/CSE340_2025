@@ -28,7 +28,7 @@ router.post("/add-classification", invValidate.classificationRules(), invValidat
 router.get("/add-inventory", invController.buildAddInventory)
 
 //process add inventory
-router.get("/add-inventory", invController.addInventory)
+//router.get("/add-inventory", invController.addInventory)
 
 
 //add post route for inventory addition

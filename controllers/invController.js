@@ -57,6 +57,7 @@ invCont.buildManagement = async function (req, res, next) {
     res.render("inventory/management", {
       title: "Inventory Management",
       nav,
+      message: req.flash("notice"),
       errors: null,
     })
   } catch (error) {
@@ -109,7 +110,7 @@ invCont.buildAddInventory = async (req, res, next) =>{
     title: "Add New Vehicle",
     nav,
     classificationList,
-    message: null,
+    message: req.flash("notice"),
     errors: null,
   })
 }
@@ -120,7 +121,7 @@ invCont.buildAddInventory = async (req, res, next) =>{
 invCont.addInventory = async (req, res, next) => {
   try {
     const nav = await utilities.getNav()
-    const {
+    let {
       inv_make,
       inv_model,
       inv_year,
@@ -132,6 +133,14 @@ invCont.addInventory = async (req, res, next) => {
       inv_color,
       classification_id,
     } = req.body
+
+
+    //convert string values to numbers
+    inv_year = parseInt(inv_year)
+    inv_price = parseFloat(inv_price)
+    inv_miles = parseInt(inv_miles)
+    classification_id = parseInt(classification_id)
+
 
     // Insert into your PG4 Admin database
     const result = await invModel.addInventory(
