@@ -18,7 +18,7 @@ const pool = require('./database/')
 const accountController = require("./controllers/accountController")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
-
+const cookieParser = require("cookie-parser")
 
 
 /* *************
@@ -58,6 +58,8 @@ app.set("layout", "./layouts/layout") // not at views root
 /* ***********************
  * Routes
  *************************/
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
 
 //Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
@@ -71,6 +73,7 @@ app.use("/account", require("./routes/accountRoute"))
 
 
 app.use(static)
+
 
 
 // Intentional 500 error route for testing
