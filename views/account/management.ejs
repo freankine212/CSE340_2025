@@ -1,7 +1,7 @@
 <h1>Account Management</h1>
 
 <!-- Flash Message -->
-<% if (message && message.length > 0) { %>
+<% if (message) { %>
   <div class="flash-message"><%= message %></div>
 <% } %>
 
@@ -14,4 +14,14 @@
   </ul>
 <% } %>
 
-<p>You’re logged in</p>
+<!-- Welcome Message -->
+<h2>Welcome <%= accountData.account_firstname %></h2>
+
+<!-- Update Account Link (for all users) -->
+<p><a href="/account/update/<%= accountData.account_id %>">Update Account Information</a></p>
+
+<!-- Inventory Management (Employee/Admin only) -->
+<% if (accountData.account_type === 'Employee' || accountData.account_type === 'Admin') { %>
+  <h3>Inventory Management</h3>
+  <p><a href="/inv/">Manage Inventory</a></p>
+<% } %>

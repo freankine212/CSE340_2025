@@ -1,0 +1,48 @@
+<h1><%= title %></h1>
+
+<!-- Flash Message -->
+<% if (message) { %>
+  <div class="flash-message"><%= message %></div>
+<% } %>
+
+<!-- Errors -->
+<% if (errors) { %>
+  <ul class="error-list">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<!-- Account Update Form -->
+<h2>Update Account Information</h2>
+<form action="/account/update" method="post">
+  <label for="account_firstname">First Name:</label>
+  <input type="text" id="account_firstname" name="account_firstname" 
+         value="<%= locals.account_firstname || accountData.account_firstname %>" required>
+  
+  <label for="account_lastname">Last Name:</label>
+  <input type="text" id="account_lastname" name="account_lastname" 
+         value="<%= locals.account_lastname || accountData.account_lastname %>" required>
+  
+  <label for="account_email">Email:</label>
+  <input type="email" id="account_email" name="account_email" 
+         value="<%= locals.account_email || accountData.account_email %>" required>
+  
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+  
+  <button type="submit">Update Account</button>
+</form>
+
+<!-- Change Password Form -->
+<h2>Change Password</h2>
+<p><strong>Password Requirements:</strong> Must be at least 12 characters with 1 uppercase, 1 lowercase, 1 number, and 1 special character.</p>
+<form action="/account/change-password" method="post">
+  <label for="account_password">New Password:</label>
+  <input type="password" id="account_password" name="account_password" 
+         required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$">
+  
+  <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+  
+  <button type="submit">Change Password</button>
+</form>

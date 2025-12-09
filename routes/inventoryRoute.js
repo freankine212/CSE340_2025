@@ -36,4 +36,14 @@ router.post(
     "/add-inventory", validate.addInventoryRules(), validate.checkAddInventoryData, invController.addInventory
 )
 
+//route for add/edit/delete 
+router.get("/add-classification", 
+  utilities.checkAccountType, 
+  utilities.handleErrors(invController.buildAddClassification))
+
+router.post("/add-classification",
+  utilities.checkAccountType,
+
+)
+
 module.exports = router;
