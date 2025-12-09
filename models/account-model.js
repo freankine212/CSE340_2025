@@ -75,4 +75,4 @@ async function updatePassword(account_password, account_id) {
   }
 }
 
-module.exports = { registerAccount, getAccountByEmail, checkExistingEmail, updatePassword, updateAccount }
+module.exports = { registerAccount, getAccountByEmail, getAccountById, checkExistingEmail, updatePassword, updateAccount }
