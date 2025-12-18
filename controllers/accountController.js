@@ -90,7 +90,7 @@ accountController.accountLogin = async function(req, res) {
   const { account_email, account_password } = req.body
 
   console.log("Login attenpt for:", account_email)
-  
+
   const accountData = await accountModel.getAccountByEmail(account_email)
   if (!accountData) {
     req.flash("notice", "Please check your credentials and try again.")
@@ -136,12 +136,18 @@ accountController.accountLogin = async function(req, res) {
 
 accountController.buildAccountManagement = async function (req, res, next) {
   let nav = await utilities.getNav()
+  
+  // GET USER'S REVIEWS
+  const reviewModel = require("../models/review-model")
+  const userReviews = await reviewModel.getReviewsByAccountId(res.locals.accountData.account_id)
+  
   res.render("account/management", {
     title: "Account Management",
     nav,
     message: req.flash("notice"),
     errors: null,
-    accountData: res.locals.accountData // Pass account data to view
+    accountData: res.locals.accountData,
+    userReviews  // Pass reviews to view
   })
 }
 

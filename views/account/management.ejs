@@ -20,6 +20,24 @@
 <!-- Update Account Link (for all users) -->
 <p><a href="/account/update/<%= accountData.account_id %>">Update Account Information</a></p>
 
+<!-- User's Reviews Section -->
+<% if (userReviews && userReviews.length > 0) { %>
+  <h3>My Reviews</h3>
+  <ul class="user-reviews-list">
+    <% userReviews.forEach(review => { %>
+      <li class="user-review-item">
+        <p><strong><%= review.inv_year %> <%= review.inv_make %> <%= review.inv_model %></strong></p>
+        <p><%= review.review_text.substring(0, 100) %><%= review.review_text.length > 100 ? '...' : '' %></p>
+        <p class="review-date"><%= new Date(review.review_date).toLocaleDateString() %></p>
+        <p>
+          <a href="/review/edit/<%= review.review_id %>">Edit</a> | 
+          <a href="/review/delete/<%= review.review_id %>">Delete</a>
+        </p>
+      </li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <!-- Inventory Management (Employee/Admin only) -->
 <% if (accountData.account_type === 'Employee' || accountData.account_type === 'Admin') { %>
   <h3>Inventory Management</h3>

@@ -9,6 +9,12 @@ const invCont = {}
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
   const data = await invModel.getInventoryByClassificationId(classification_id)
+  
+  // Check if data exists
+  if (!data || data.length === 0) {
+    return next({status: 404, message: "No vehicles found for this classification."})
+  }
+  
   const grid = await utilities.buildClassificationGrid(data)
   let nav = await utilities.getNav()
   const className = data[0].classification_name
@@ -23,24 +29,31 @@ invCont.buildByClassificationId = async function (req, res, next) {
  *  Build vehicle detail view
  * ************************** */
 invCont.buildByInvId = async function (req, res, next){
-  //console.log("car buildByInvId triggered for ID:", req.params.invId)
   try{
     const inv_id = req.params.invId
     const data = await invModel.getVehicleById(inv_id)
-    const vehicle = data [0]
+    const vehicle = data[0]
 
     if(!vehicle){
-      // If no vehicle found, trigger that darn 404 message
-      return next ({status:404, message: "vehicle not found, please check inventory again"})
+      return next({status:404, message: "vehicle not found, please check inventory again"})
     }
+    
     const detailHTML = await utilities.buildVehicleDetail(vehicle)
     const nav = await utilities.getNav()
     const title = `${vehicle.inv_year} ${vehicle.inv_make} ${vehicle.inv_model}`
 
+    // GET REVIEWS FOR THIS VEHICLE
+    const reviewModel = require("../models/review-model")
+    const reviews = await reviewModel.getReviewsByInvId(inv_id)
+
     res.render("./inventory/detail", {
       title,
       nav,
-      detail: detailHTML
+      detail: detailHTML,
+      inv_id,           
+      reviews,          
+      errors: null,    
+      message: req.flash("notice")  
     })
   } catch (error){
     console.error("Error building vehicle detail view", error)

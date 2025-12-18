@@ -19,6 +19,7 @@ const accountController = require("./controllers/accountController")
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const reviewRoute = require("./routes/reviewRoute")
 
 
 /* *************
@@ -71,6 +72,9 @@ app.use("/inv", require("./routes/inventoryRoute"))
 //account Route
 app.use("/account", require("./routes/accountRoute"))
 
+
+//review route
+app.use("/review", reviewRoute)
 
 app.use(static)
 

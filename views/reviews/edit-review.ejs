@@ -1,0 +1,25 @@
+<h1><%= title %></h1>
+
+<% if (message) { %>
+  <div class="flash-message"><%= message %></div>
+<% } %>
+
+<% if (errors) { %>
+  <ul class="error-list">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<h2>Editing review for: <%= reviewData.inv_year %> <%= reviewData.inv_make %> <%= reviewData.inv_model %></h2>
+
+<form action="/review/update" method="post">
+  <label for="review_text">Review:</label>
+  <textarea id="review_text" name="review_text" rows="5" required><%= reviewData.review_text %></textarea>
+  
+  <input type="hidden" name="review_id" value="<%= reviewData.review_id %>">
+  
+  <button type="submit">Update Review</button>
+  <a href="/account/">Cancel</a>
+</form>
